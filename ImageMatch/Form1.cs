@@ -257,7 +257,7 @@ namespace ImageMatch
 
             int rSize = 5;//目标窗口大小
             int r = rSize / 2;
-            double[,] matchResult = new double[feature_left.GetLength(0), 5];    //存储特征点对应坐标与系数
+            double[,] matchResult = new double[feature_left.GetLength(0), 5];    //存储特征点对应坐标与系数.
 
             //对左相片特征点逐个进行匹配
             for (int m =0;m< feature_left.GetLength(0); m++)
