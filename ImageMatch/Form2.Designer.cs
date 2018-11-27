@@ -35,6 +35,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -48,6 +50,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -66,10 +70,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.toolStripProgressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
@@ -85,7 +85,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(538, 312);
+            this.pictureBox1.Size = new System.Drawing.Size(753, 463);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -95,9 +95,9 @@
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(547, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(762, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(529, 312);
+            this.pictureBox2.Size = new System.Drawing.Size(738, 463);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -147,10 +147,28 @@
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(547, 321);
+            this.panel3.Location = new System.Drawing.Point(762, 472);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(529, 173);
+            this.panel3.Size = new System.Drawing.Size(738, 258);
             this.panel3.TabIndex = 9;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(116, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 18);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "匹配点数";
+            this.label13.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(220, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(0, 18);
+            this.label14.TabIndex = 20;
             // 
             // checkBox3
             // 
@@ -230,7 +248,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(47, 28);
             this.textBox7.TabIndex = 9;
-            this.textBox7.Text = "-100";
+            this.textBox7.Text = "0.9";
             // 
             // textBox8
             // 
@@ -254,11 +272,11 @@
             // button6
             // 
             this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(180, 166);
+            this.button6.Location = new System.Drawing.Point(242, 166);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(203, 45);
+            this.button6.Size = new System.Drawing.Size(141, 45);
             this.button6.TabIndex = 10;
-            this.button6.Text = "利用左右视差匹配";
+            this.button6.Text = "局部搜索匹配";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -280,7 +298,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.0161F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1079, 516);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1503, 752);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // panel1
@@ -297,10 +315,28 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 321);
+            this.panel1.Location = new System.Drawing.Point(3, 472);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(538, 173);
+            this.panel1.Size = new System.Drawing.Size(753, 258);
             this.panel1.TabIndex = 8;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(108, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 18);
+            this.label12.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(22, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(80, 18);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "特征点数";
+            this.label11.Visible = false;
             // 
             // textBox5
             // 
@@ -342,7 +378,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(56, 28);
             this.textBox3.TabIndex = 14;
-            this.textBox3.Text = "100";
+            this.textBox3.Text = "150";
             // 
             // textBox2
             // 
@@ -475,52 +511,16 @@
             // 
             this.toolStripProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel1.SetColumnSpan(this.toolStripProgressBar1, 2);
-            this.toolStripProgressBar1.Location = new System.Drawing.Point(3, 500);
+            this.toolStripProgressBar1.Location = new System.Drawing.Point(3, 736);
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(180, 13);
             this.toolStripProgressBar1.TabIndex = 17;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(22, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(80, 18);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "特征点数";
-            this.label11.Visible = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(108, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(0, 18);
-            this.label12.TabIndex = 18;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(116, 27);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 18);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "匹配点数";
-            this.label13.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(220, 27);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 18);
-            this.label14.TabIndex = 20;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 516);
+            this.ClientSize = new System.Drawing.Size(1503, 752);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form2";
             this.Text = "Form2";

@@ -16,9 +16,7 @@ namespace ImageMatch
         {
             InitializeComponent();
         }
-
         //全局变量声明
-
         int[,] tempFeature;
         int[,] finalFeature;
         double[,] featureTemplate;
@@ -40,7 +38,6 @@ namespace ImageMatch
         int Y_l;
         int X_r;
         int Y_r;
-
         double x_;//左右像片视差_x方向
         double y_; //左右像片视差_y方向
         int Ssize;//右片搜索窗口大小
@@ -92,7 +89,6 @@ namespace ImageMatch
             Bitmap Var_bmp = (Bitmap)pictureBox1.Image;                    //根据图象的大小创建Bitmap对象
 
             gray_left = new double[Var_W, Var_H];                       //用于存储各点灰度值
-
             for (int i = 0; i < Var_W; i++)
             {
                 for (int j = 0; j < Var_H; j++)
@@ -105,8 +101,7 @@ namespace ImageMatch
 
             toolStripProgressBar1.Value += toolStripProgressBar1.Step;
 
-            double[,] xingquzhi = new double[Var_W, Var_H];                      //用于存储各点兴趣值
-            
+            double[,] xingquzhi = new double[Var_W, Var_H];                      //用于存储各点兴趣值            
             for (int i = k; i < Var_W - k; i++)
             {
                 for (int j = k; j < Var_H - k; j++)//防止溢出
@@ -114,27 +109,25 @@ namespace ImageMatch
                     double V1 = 0;
                     for (int m = 0; m < Ksize-1; m++)//防止溢出
                     {
-
-                        V1 = V1 + Math.Pow(gray_left[i - k + m, j] - gray_left[i - 1 + m, j], 2);    //计算V1方向(0°)相邻像素灰度差平方和
+                        V1 = V1 + Math.Pow(gray_left[i - k + m, j] - gray_left[i - k + m+1, j], 2);    //计算V1方向(0°)相邻像素灰度差平方和
                     }
                     double V2 = 0;
                     for (int m = 0; m < Ksize-1; m++)
                     {
-                        V2 = V2 + Math.Pow(gray_left[i - k + m, j - k + m] - gray_left[i - 1 + m, j - 1 + m], 2);    //计算V2方向(45°_顺时针标记角度）相邻像素灰度差平方和
+                        V2 = V2 + Math.Pow(gray_left[i - k + m, j - k + m] - gray_left[i - k + m+1, j - k + m+1], 2);    //计算V2方向(45°_顺时针标记角度）相邻像素灰度差平方和
                     }
                     double V3 = 0;
                     for (int m = 0; m < Ksize-1; m++)
                     {
-                        double ttt = gray_left[i, j - k + m];
-                        V3 = V3 + Math.Pow(gray_left[i, j - k + m] - gray_left[i, j - 1 + m], 2);    //计算V3方向（90°)相邻像素灰度差平方和
+                       
+                        V3 = V3 + Math.Pow(gray_left[i, j - k + m] - gray_left[i, j - k + m+1], 2);    //计算V3方向（90°)相邻像素灰度差平方和
                     }
                     double V4 = 0;
                     for (int m = 0; m < Ksize-1; m++)
                     {
-                        V4 = V4 + Math.Pow(gray_left[i - k + m, j + k - m] - gray_left[i - 1 + m, j + 1 - m], 2);    //计算V4方向(135°）相邻像素灰度差平方和
+                        V4 = V4 + Math.Pow(gray_left[i - k + m, j + k - m] - gray_left[i - k + m+1, j + k - m-1], 2);    //计算V4方向(135°）相邻像素灰度差平方和
                     }
-                    xingquzhi[i, j] = Math.Min(Math.Min(Math.Min(V1, V2), V3), V4);
-                    double tttt = xingquzhi[i, j];//从V1、V2、V3、V4中取最小值作为该点兴趣值
+                    xingquzhi[i, j] = Math.Min(Math.Min(Math.Min(V1, V2), V3), V4);//从V1、V2、V3、V4中取最小值作为该点兴趣值
                 }
             }
 
@@ -193,7 +186,6 @@ namespace ImageMatch
                                 {
                                     if (MAX < xingquzhi[i - h + m, j - h + n])
                                     {
-
                                         MAX = xingquzhi[i - h + m, j - h + n];    //获取滑动窗口中最大值
                                         a = i - h + m;                            //获取最大值列
                                         b = j - h + n;                            //获取最大值行
@@ -506,32 +498,30 @@ namespace ImageMatch
            
             for (int i = k; i < Var_W - k; i++)
             {
-                for (int j = k; j < Var_H - k; j++)
+                for (int j = k; j < Var_H - k; j++)//防止溢出
                 {
                     double V1 = 0;
-                    for (int m = 0; m < 4; m++)
+                    for (int m = 0; m < Ksize - 1; m++)
                     {
-
-                        V1 = V1 + Math.Pow(gray_left[i - k + m, j] - gray_left[i - 1 + m, j], 2);    //计算V1方向相邻像素灰度差平方和
+                        V1 = V1 + Math.Pow(gray_left[i - k + m, j] - gray_left[i - k + m + 1, j], 2);    //计算V1方向(0°)相邻像素灰度差平方和
                     }
                     double V2 = 0;
-                    for (int m = 0; m < 4; m++)
+                    for (int m = 0; m < Ksize - 1; m++)
                     {
-                        V2 = V2 + Math.Pow(gray_left[i - k + m, j - k + m] - gray_left[i - 1 + m, j - 1 + m], 2);    //计算V2方向相邻像素灰度差平方和
+                        V2 = V2 + Math.Pow(gray_left[i - k + m, j - k + m] - gray_left[i - k + m + 1, j - k + m + 1], 2);    //计算V2方向(45°_顺时针标记角度）相邻像素灰度差平方和
                     }
                     double V3 = 0;
-                    for (int m = 0; m < 4; m++)
+                    for (int m = 0; m < Ksize - 1; m++)
                     {
-                        double ttt = gray_left[i, j - k + m];
-                        V3 = V3 + Math.Pow(gray_left[i, j - k + m] - gray_left[i, j - 1 + m], 2);    //计算V3方向相邻像素灰度差平方和
+
+                        V3 = V3 + Math.Pow(gray_left[i, j - k + m] - gray_left[i, j - k + m + 1], 2);    //计算V3方向（90°)相邻像素灰度差平方和
                     }
                     double V4 = 0;
-                    for (int m = 0; m < 4; m++)
+                    for (int m = 0; m < Ksize - 1; m++)
                     {
-                        V4 = V4 + Math.Pow(gray_left[i - k + m, j + k - m] - gray_left[i - 1 + m, j + 1 - m], 2);    //计算V4方向相邻像素灰度差平方和
+                        V4 = V4 + Math.Pow(gray_left[i - k + m, j + k - m] - gray_left[i - k + m + 1, j + k - m - 1], 2);    //计算V4方向(135°）相邻像素灰度差平方和
                     }
-                    xingquzhi[i, j] = Math.Min(Math.Min(Math.Min(V1, V2), V3), V4);
-                    double tttt = xingquzhi[i, j];//从V1、V2、V3、V4中取最小值作为该点兴趣值
+                    xingquzhi[i, j] = Math.Min(Math.Min(Math.Min(V1, V2), V3), V4);//从V1、V2、V3、V4中取最小值作为该点兴趣值
                 }
             }
 
@@ -581,32 +571,31 @@ namespace ImageMatch
                
                
 
+
+
+
+
                 for (int i = aWindow; i < Var_W - aWindow; i = i + Asize)
                 {
                     for (int j = aWindow; j < Var_H - aWindow; j = j + Asize)
-                    {
-                                    
+                    {                                    
                         int [] a = new int [Asize*Asize];                                          //设a为最大值行
                         int[] b = new int[Asize*Asize];                                              //设b为最大值列
-                        int aWinhouxuanNum = 0;//该均匀窗口候选点数
-                        
+                        int aWinhouxuanNum = 0;//该均匀窗口候选点数                       
                         double [] arrSortTemp = new double[Asize*Asize];//待排序兴趣值数组
                         for (int m = 0; m < Asize; m++)
                         {
                             for (int n = 0; n < Asize; n++)
                             {
-
                                 //遍历阈值模板-冒泡法排序，得到前afpNumMax个候选点作为特征点
                                 if (houxuanFlag[i - aWindow + m, j - aWindow + n] == 1)
                                 {
                                     arrSortTemp[aWinhouxuanNum] = xingquzhi[i - aWindow + m, j - aWindow + n];
                                     a[aWinhouxuanNum] = i - aWindow + m;                            //获取最大值列
                                     b[aWinhouxuanNum] = j - aWindow + n;                            //获取最大值行
-                                    aWinhouxuanNum++;
-                                   
-                                  
-                                }
-                               
+                                    aWinhouxuanNum++;                                   
+                                 
+                                }                               
                             }
                         }
                         if ((a[0] != 0) && (b[0] != 0))//非空，含候选点
@@ -618,12 +607,10 @@ namespace ImageMatch
                                     tempFP[fpNum, 0] = a[p];             //存储特征点列
                                     tempFP[fpNum, 1] = b[p];             //存储特征点行
                                     fpNum++;                               //每有一个既不为0也不重复的最大值特征点数目加一   
-
                                 }
                             }
                             else//排序
                             {
-
                                 double[] arrSort = new double[aWinhouxuanNum];
                                 int[] index = new int[aWinhouxuanNum];
                                 for (int fg = 0; fg <aWinhouxuanNum; fg++)//拷贝
@@ -632,8 +619,7 @@ namespace ImageMatch
                                     index[fg] = fg; 
                                 }
                                 double temp;
-                                int tempIndex;
-                               
+                                int tempIndex;                              
                                 for (int drg = 0; drg < arrSort.Length; drg++)
                                 {
                                     for (int h = drg + 1; h < arrSort.Length; h++)
@@ -649,27 +635,17 @@ namespace ImageMatch
                                         }
                                     }
                                 }
-
-
                                 //更新前afpNumMax候选点作为特征点
-
                                 for (int p = 0; p < afpNumMax; p++)
                                 {
                                     tempFP[fpNum, 0] = a[index[p]];             //存储特征点列
                                     tempFP[fpNum, 1] = b[index[p]];             //存储特征点行
                                     fpNum++;                               //每有一个既不为0也不重复的最大值特征点数目加一   
-
                                 }
-
-
-                            }
-
-                          
+                            }                         
                         }
                     }
-                }
-
-             
+                }             
                 tempFeature = tempFP;
                 multiple += 1;
             }
@@ -834,16 +810,12 @@ namespace ImageMatch
                 double X = zuobiao[c, 0];//X+x_-s,X+x_+s 搜索窗口4顶点
                 double Y = zuobiao[c, 1];//Y+y_-s,Y+y_+s
                 //判断粗略匹配点是否存在
-
                 if ((X + x_ <0) || (X + x_ > Var_W) || (Y + y_ < 0) || Y + y_ > Var_H)
                 {
                     //溢出
                     continue;//进行下一次循环
-
                 }
-
                 //判断搜索窗口是否存在
-
                 int x_min =(int)( X + x_ - s);
                 int x_max = (int)(X + x_ + s );
                 int y_min  = (int)(Y + y_ - s );
@@ -875,14 +847,11 @@ namespace ImageMatch
                         {
                             for (int n = 0; n < Osize; n++)
                             {
-
                                 double sdavx = featureTemplate[c, t];
                                 chenghe += featureTemplate[c, t] * gray_rihgt[i - o + m, j - o + n];
                                 t++;
                             }
                         }
-
-
                         double tezhenghe = 0;    //特征点灰度值和
                         double tezhengji = 0;    //特征点灰度值平方和
                         for (int m = 0; m < Osize * Osize; m++)
@@ -890,8 +859,6 @@ namespace ImageMatch
                             tezhenghe += featureTemplate[c, m];
                             tezhengji += Math.Pow(featureTemplate[c, m], 2);
                         }
-
-
                         double xiangsuhe = 0;    //像素点灰度值和
                         double xiangsuji = 0;    //像素点灰度值平方和
                         for (int m = 0; m < Osize; m++)
@@ -902,9 +869,6 @@ namespace ImageMatch
                                 xiangsuji += Math.Pow(gray_rihgt[i - o + m, j - o + n], 2);
                             }
                         }
-
-
-
                         double xishu = 0;
                         xishu = (chenghe - tezhenghe * xiangsuhe / (Osize * Osize)) / Math.Sqrt((tezhengji - Math.Pow(tezhenghe, 2) / (Osize * Osize)) * (xiangsuji - Math.Pow(xiangsuhe, 2) / (Osize * Osize)));
                         if (maxxishu < xishu)
@@ -913,7 +877,6 @@ namespace ImageMatch
                             a = i; b = j;
                         }
                     }
-
                 }
 
 
